@@ -148,7 +148,7 @@ private
 
    -- Sum of the masses
   N : Nat
-  N = 5458236 
+  N = 5458236
 
   asciiFTree : FTree N asciiBTree
   asciiFTree = snd (fromMass asciiBTree (ascii-mass' ∘ right))

@@ -65,7 +65,7 @@ move {a} {b} c = MkF ap unap unapap apunap
 
   apunap : ∀ c+n → ap (unap c+n) ≡ c+n
   apunap (c+n [[ c+a≤c+n , _ ]]) =
-    ≡-Range (by (sub-less {a = c} {b = c+n} (by c+a≤c+n))) 
+    ≡-Range (by (sub-less {a = c} {b = c+n} (by c+a≤c+n)))
 
 split {a} {c} b a≤b b≤c = MkF ap unap ua au
   where
@@ -97,14 +97,14 @@ split {a} {c} b a≤b b≤c = MkF ap unap ua au
 scale zero = MkF
   (\ { (_ , (_ [[ _ , diff _ () ]])) })
   (\ { (_ [[ _ , diff _ () ]]) })
-  (\ { (_ , (_ [[ _ , diff _ () ]])) }) 
+  (\ { (_ , (_ [[ _ , diff _ () ]])) })
   (\ { (_ [[ _ , diff _ () ]]) })
 scale {a} {b} (suc c) =
   MkF (ap (suc c)) (unap (suc c)) (ua (suc c)) (au (suc c))
   where
   ap : ∀ c → {{NonZero c}}
     → Range a b × Fin c → Range (c * a) (c * b)
-  ap c ((q [[ a≤q , q<b ]]) , (r [[ _ , r<c ]])) = 
+  ap c ((q [[ a≤q , q<b ]]) , (r [[ _ , r<c ]])) =
     (c * q + r) [[ by (≤-mono c a≤q) , <-mono r<c q<b ]]
 
   unap : ∀ c → {{NonZero c}} → Range (c * a) (c * b)
@@ -120,12 +120,12 @@ scale {a} {b} (suc c) =
     c*q<c*b : c * q < c * b
     c*q<c*b = ordProof
       c * q ≤[ auto ] q * c + r ≡[ eq ] n <[ n<c*b ] c * b ∎Ord
-    
+
   ua : ∀ c → {{_ : NonZero c}} → ∀ qr → unap c (ap c qr) ≡ qr
   ua c ((q [[ _ , _ ]]) , (r [[ _ , r<c ]])) with (c * q + r) divmod c
   ... | qr q' r' r'<c eq = let
     q≡q' , r≡r' = divmod-unique (qr q' r' r'<c eq) (qr q r r<c auto)
-    in cong₂ _,_ (≡-Range q≡q') (≡-Range r≡r') 
+    in cong₂ _,_ (≡-Range q≡q') (≡-Range r≡r')
 
   au : ∀ c → {{_ : NonZero c}} → ∀ n → ap c (unap c n) ≡ n
   au c (n [[ _ , _ ]]) with n divmod c
@@ -169,7 +169,7 @@ unSplit' c = flip (split' c)
 instance
   SmashRange : ∀ {a} → Smashed (Range a (suc a))
   smashed {{ SmashRange {a} }} {x} {y} =
-      ≡-Range (helper x ⟨≡⟩ sym (helper y)) 
+      ≡-Range (helper x ⟨≡⟩ sym (helper y))
     where
     helper : (x : Range a (suc a)) → rangeToNat x ≡ a
     helper (x [[ a≤x , x≤a ]]) with compare x a

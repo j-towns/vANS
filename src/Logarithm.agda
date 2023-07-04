@@ -16,10 +16,10 @@ private
   instance
     baseNZ : NonZero base
     baseNZ = baseNZAux base
-  
+
   NZ⇒>0 : ∀ a {{_ : NonZero a}} → a > 0
   NZ⇒>0 (suc a) = auto
-  
+
   wf-helper : ∀ {a b} base {{_ : IsTrue (2 ≤? base)}}{{_ : NonZero a}}
     → a ≤ b → base * a ≤ b → b - base * a < b - a
   wf-helper {a} {b} (suc (suc base)) a≤b base*a≤b =
@@ -30,12 +30,12 @@ private
         a + (b - a)
       <[ by (NZ⇒>0 a)  ]
         a + (a + base * a) + (b - a)
-      ∎Ord) 
-  
+      ∎Ord)
+
  -- Analogous to log_{base} (b / a)
 data Log (a b : Nat) : Set where
   lg : ∀ n → base ^ n * a ≤ b → b < base ^ (1 + n) * a → Log a b
-  
+
 private
   logAux : ∀ a b → {{NonZero a}} → Acc _<_ (b - a) → a ≤ b → Log a b
   logAux a b wf       a≤b with b <-dec' base * a

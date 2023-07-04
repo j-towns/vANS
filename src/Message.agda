@@ -32,7 +32,7 @@ private
 
   a≤base*a : ∀ {a} → a ≤ base * a
   a≤base*a {a} = leq-mul-l a base
-  
+
   refocus-step : ∀ {a} → Message a <-> Message (base * a)
   refocus-step {a} = F (λ where
     (m , []     /  ) → (           /   / m)
@@ -73,7 +73,7 @@ private
     lb' : base * a ≤ base * a'
     lb' = ≤-mono base lb
 
-  refocus-up : ∀ {a a'} → {{NonZero a}} → a < a' →  
+  refocus-up : ∀ {a a'} → {{NonZero a}} → a < a' →
     Message a <-> Message a'
   refocus-up {a} {a'} a<a' with log a a' (by a<a')
   ... | lg n lb ub = refocus-part1 n <> refocus-part2 lb (by ub)
@@ -89,7 +89,7 @@ normalize : {a : Nat} → {{NonZero a}} → Message a <-> Message 1
 normalize = refocus
 
 zeroMessage : ∀ {a : Nat} → {{NonZero a}} → Message a
-zeroMessage {suc a} = right (zero [[ (diff! zero) , (diff a auto) ]]) 
+zeroMessage {suc a} = right (zero [[ (diff! zero) , (diff a auto) ]])
 
 isZeroMessage : ∀ {a : Nat} → {{NonZero a}} → Message a → Bool
 isZeroMessage {suc a} (m /                    ) = false

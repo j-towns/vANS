@@ -15,7 +15,7 @@ open import Numeric.Nat.Properties using (sub-less)
 
 <-mono : {a b c d : Nat} → d < b → c < a → b * c + d < b * a
 <-mono {a} {b} {c} {d} d<b c<a =
-  ordProof 
+  ordProof
     b * c + d
   <[ by d<b ]
     b * c + b
@@ -23,7 +23,7 @@ open import Numeric.Nat.Properties using (sub-less)
     b * suc c
   ≤[ ≤-mono b (suc-monotone c<a)  ]
     b * a
-  ∎Ord 
+  ∎Ord
 
 ≤-mono-contra : {a b c d : Nat} → d < b → b * c + d ≥ b * a → c ≥ a
 ≤-mono-contra d<b ab≤cb+d = ≮⇒≥ \ c<a → <⇒≱ (<-mono d<b c<a) ab≤cb+d
@@ -63,4 +63,3 @@ a <-dec' b with a <-dec b
 ... | no  a≮b = ge (≮⇒≥ a≮b)
 
 infix 4 _<-dec'_
-  

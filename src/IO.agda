@@ -52,4 +52,3 @@ readBytes = do
 writeBytes : List Byte → IO ⊤
 writeBytes []       = pure unit
 writeBytes (c ∷ cs) = putChar (byteToChar c) >> writeBytes cs
-

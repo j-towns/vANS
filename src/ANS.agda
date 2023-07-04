@@ -17,11 +17,11 @@ Dist {A} N mass = Fin N <-> Σ A (Fin ∘ mass)
 
 
 private
-  rangeDecode : ∀ {A} N mass → Dist N mass → ∀ a b → 
+  rangeDecode : ∀ {A} N mass → Dist N mass → ∀ a b →
     Range (N * a) (N * b) <-> Σ A λ x → Range (mass x * a) (mass x * b)
   rangeDecode N mass lookup _ _ = F λ where
-    h → h       ⟨ unScale N      ⟩ λ { (h , i) → 
-        i       ⟨ lookup         ⟩ λ { (x , i) → 
+    h → h       ⟨ unScale N      ⟩ λ { (h , i) →
+        i       ⟨ lookup         ⟩ λ { (x , i) →
         (h , i) ⟨ scale (mass x) ⟩ λ { h       → (x , h) } } }
 
 module Decode {A : Set}(N base a : Nat)(mass' : A -> Nat+)
@@ -39,10 +39,10 @@ module Decode {A : Set}(N base a : Nat)(mass' : A -> Nat+)
     decode' : ∀ k -> Message (N * k) <-> Σ A λ x -> Message (mass x * k)
     decode' k = F λ where
       (h , t /  ) → h ⟨ =R= refl auto             ⟩ λ { h       →
-                    h ⟨ rangeDecode' k (base * k) ⟩ λ { (x , h) → 
+                    h ⟨ rangeDecode' k (base * k) ⟩ λ { (x , h) →
                     h ⟨ =R= refl auto             ⟩ λ { h       → x , (h , t /  ) } } }
       (      / h) → h ⟨ =R= auto refl             ⟩ λ { h       →
-                    h ⟨ rangeDecode' 0 k          ⟩ λ { (x , h) → 
+                    h ⟨ rangeDecode' 0 k          ⟩ λ { (x , h) →
                     h ⟨ =R= auto refl             ⟩ λ { h       → x , (      / h) } } }
 
   decode : ∀ k -> {{NonZero k}} -> Message a <-> Message a × A

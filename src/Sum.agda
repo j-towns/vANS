@@ -17,7 +17,7 @@ _<+>_ : {A B C D : Set} -> (A <-> C) -> (B <-> D) -> A ⊎ B <-> C ⊎ D
 f <+> g = F λ where
   (a /  ) → a ⟨ f ⟩ λ { c → (c /  ) }
   (  / b) → b ⟨ g ⟩ λ { d → (  / d) }
-  
+
 infix 1 _<+>_
 
 _->>_ : Set -> Set -> Set₁

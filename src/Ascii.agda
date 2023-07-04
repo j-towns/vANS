@@ -277,7 +277,7 @@ asciiToChar = λ where
   (<1> (<1> (<1> (<1> (<1> (<1> (<0> <end>))))))) → '\x7e'
   (<1> (<1> (<1> (<1> (<1> (<1> (<1> <end>))))))) → '\x7f'
 
-  
+
 charToByte : Char → Maybe Byte
 charToByte c with charToNat c
 ... | n with n <-dec 256
