@@ -1,5 +1,6 @@
 # Verified asymmetric numeral systems (vANS)
-This repository contains a proof-of-concept [Flipper](https://github.com/j-towns/flipper) implementation of asymmetric numeral systems
+This repository contains a proof-of-concept [Flipper](https://github.com/j-towns/flipper) implementation of
+[asymmetric numeral systems](https://en.wikipedia.org/wiki/Asymmetric_numeral_systems)
 compression. Implementing vANS in the reversible language
 Flipper
 means a proof is automatically generated showing that vANS is truly lossless, and this proof is checked by
